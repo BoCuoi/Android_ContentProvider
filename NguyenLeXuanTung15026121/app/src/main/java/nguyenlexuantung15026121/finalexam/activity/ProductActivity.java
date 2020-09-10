@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -84,7 +85,7 @@ public class ProductActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addProductCV();
+                saveProduct();
                 showProducts();
             }
         });
@@ -161,6 +162,7 @@ public class ProductActivity extends AppCompatActivity {
         String PROVIDER_NAME = "nguyenlexuantung15026121.finalexam"; // authority argm
         String PRODUCTS_URL = "content://" + PROVIDER_NAME + "/products";
         Uri PRODUCTS_CONTENT_URI = Uri.parse(PRODUCTS_URL);
+
         List<Product> productList = new ArrayList<>();
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(PRODUCTS_CONTENT_URI, null, null, null, null);

@@ -83,7 +83,7 @@ public class DbContentProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unkown uri: " + uri);
         }
-        db.close();
+//        db.close();
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;
     }
@@ -114,8 +114,9 @@ public class DbContentProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
-        db.close();
-        // Use this on the URI passed into the function to notify any observers that the uri has changed
+        ///java.lang.IllegalStateException: Cannot perform this operation because the connection pool has been closed.
+//        db.close();
+        /// Use this on the URI passed into the function to notify any observers that the uri has changed
         getContext().getContentResolver().notifyChange(uri, null);
         return returnUri;
     }

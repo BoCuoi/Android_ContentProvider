@@ -5,18 +5,25 @@
     android:orientation="horizontal"
     android:weightSum="5">
 
+    <ImageView
+        android:id="@+id/img_item"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_launcher_foreground" />
+
     <TextView
         android:id="@+id/tvProducer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:textSize="20dp"/>
+        android:layout_weight="3"
+        android:textSize="20dp" />
 
     <CheckBox
         android:id="@+id/ckbProducer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text=""/>
+        android:text="" />
 
 </LinearLayout>

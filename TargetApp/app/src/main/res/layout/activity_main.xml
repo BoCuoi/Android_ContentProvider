@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnExitAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="right"
+        android:text="CLOSE"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edtProductID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="NAME"
+        android:inputType="text" />
+
+    <CheckBox
+        android:id="@+id/ckbSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Small"
+        android:textSize="20dp" />
+
+    <CheckBox
+        android:id="@+id/ckbBig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Big"
+        android:textSize="20dp" />
+
+    <Spinner
+        android:id="@+id/spnProducer"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        android:id="@+id/edtAmountProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="100"
+        android:hint="AMOUNT"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="8">
+
+        <Button
+            android:id="@+id/btnShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="SHOW"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="ADD"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="UPDATE"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="DELETE"
+            android:textSize="20dp" />
+
+
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/lvProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

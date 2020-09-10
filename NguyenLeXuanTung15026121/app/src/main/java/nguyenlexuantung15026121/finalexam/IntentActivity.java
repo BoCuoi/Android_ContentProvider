@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,31 +28,36 @@ public class IntentActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.lvProducer);
 
-        ArrayList<Producer> tempArr = new ArrayList<>();
+        final ArrayList<Producer> tempArr = new ArrayList<>();
 
         int producer_id = getIntent().getIntExtra("producer_id", 0);
         String producer_name = getIntent().getStringExtra("producer_name");
 
-        Producer producer1 = new Producer(1,"A");
-        Producer producer2 = new Producer(2,"B");
+        Producer producer1 = new Producer(1, "A");
+        Producer producer2 = new Producer(2, "B");
         tempArr.add(producer1);
         tempArr.add(producer2);
-        tempArr.add(new Producer(producer_id, producer_name));
+
+        ///java.lang.NullPointerException: Attempt to invoke virtual method 'boolean java.lang.String.contains(java.lang.CharSequence)' on a null object reference
+        ///Error set imageview compare contains charater on null field
+//        tempArr.add(new Producer(producer_id, producer_name));
         final ProducerCollectionAdapter adapter = new ProducerCollectionAdapter(IntentActivity.this, R.layout.producer_item, tempArr);
         listView.setAdapter(adapter);
-
-
 
 
         btnIntentShow = (Button) findViewById(R.id.btnItentShow);
         btnIntentShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String temp = "";
-                for (int i = 0; i < adapter.getCount(); i++) {
-                    Producer producer = adapter.getItem(i);
-                    Toast.makeText(IntentActivity.this, producer.getProducer_name(),Toast.LENGTH_SHORT).show();
+                for (int i = listView.getChildCount() - 1; i >= 0; i--) {
+                    v = listView.getChildAt(i);
+                    CheckBox chk = (CheckBox) v.findViewById(R.id.ckbProducer);
+                    if (chk.isChecked()) {
+                        tempArr.remove(i);
+                        Toast.makeText(IntentActivity.this, i + "", Toast.LENGTH_SHORT).show();
+                    }
                 }
+                adapter.notifyDataSetChanged();
 
             }
         });
