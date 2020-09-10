@@ -3,6 +3,7 @@ package nguyenlexuantung15026121.finalexam.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,10 @@ public class ProductActivity extends AppCompatActivity {
     List<Product> productList;
     List<Producer> producerList;
     ArrayAdapter<Product> adapterListView;
+
+    static final String PROVIDER_NAME = "nguyenlexuantung15026121.finalexam";
+    static final String PRODUCTS_URL = "content://" + PROVIDER_NAME + "/products";
+    static final Uri PRODUCTS_CONTENT_URI = Uri.parse(PRODUCTS_URL);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,12 @@ public class ProductActivity extends AppCompatActivity {
         ArrayAdapter<Producer> adapterProducer = new ArrayAdapter<>(ProductActivity.this, android.R.layout.simple_list_item_1, producerList);
         spinnerProduct.setAdapter(adapterProducer);
 
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +84,7 @@ public class ProductActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveProduct();
+                addProductCV();
                 showProducts();
             }
         });
@@ -168,5 +180,23 @@ public class ProductActivity extends AppCompatActivity {
         }
         ArrayAdapter<Product> adapter = new ArrayAdapter<>(ProductActivity.this, android.R.layout.simple_list_item_1, productList);
         listViewProduct.setAdapter(adapter);
+    }
+
+    public void addProductCV() {
+        Producer producerPicked = producerList.get(spinnerProduct.getSelectedItemPosition());
+        String tempValue;
+        if (radioButtonSmall.isChecked()) {
+            tempValue = "50 kg";
+        } else
+            tempValue = "100 kg";
+        ContentResolver contentResolver = getContentResolver();
+        ContentValues values = new ContentValues();
+        values.put("product_id", Integer.parseInt(edtID.getText().toString()));
+        values.put("product_name", edtName.getText().toString());
+        values.put("product_size", tempValue);
+        values.put("product_amount", Integer.parseInt(edtAmount.getText().toString()));
+        values.put("producer_id", spinnerProduct.getSelectedItemPosition() + 1);
+        Uri postProductUri = contentResolver.insert(PRODUCTS_CONTENT_URI, values);
+        Toast.makeText(ProductActivity.this, spinnerProduct.getSelectedItemPosition() + "", Toast.LENGTH_LONG).show();
     }
 }

@@ -9,13 +9,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import nguyenlexuantung15026121.finalexam.activity.AddActivity;
+import nguyenlexuantung15026121.finalexam.activity.ProducerActivity;
 import nguyenlexuantung15026121.finalexam.activity.ProductActivity;
 import nguyenlexuantung15026121.finalexam.activity.SearchActivity;
+import nguyenlexuantung15026121.finalexam.adapter.ProducerCollectionAdapter;
+import nguyenlexuantung15026121.finalexam.models.Producer;
 
 public class MainActivity extends AppCompatActivity {
     Button btnExitMain;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mnCV:
                 Intent itentCV = new Intent(MainActivity.this, ProductActivity.class);
                 startActivity(itentCV);
+                return true;
+            case R.id.mnProducer:
+                Intent itentProducer = new Intent(MainActivity.this, ProducerActivity.class);
+                startActivity(itentProducer);
+                return true;
+            case R.id.mnIntent:
+                Intent itentView = new Intent(MainActivity.this, IntentActivity.class);
+                startActivity(itentView);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

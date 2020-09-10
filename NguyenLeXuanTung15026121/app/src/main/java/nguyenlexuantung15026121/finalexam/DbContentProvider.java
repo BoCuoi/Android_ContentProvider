@@ -58,14 +58,15 @@ public class DbContentProvider extends ContentProvider {
                         @Nullable String selection,
                         @Nullable String[] selectionArgs,
                         @Nullable String sortOrder) {
-        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        long _id;
         Cursor cursor;
         switch (uriMatcher.match(uri)) {
             case PRODUCT:
                 cursor = db.query("products", projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case PRODUCT_ID:
-                long _id = ContentUris.parseId(uri);
+                _id = ContentUris.parseId(uri);
                 cursor = db.query("products", projection, "product_id=?", new String[]{String.valueOf(_id)},
                         null, null,
                         sortOrder);
@@ -82,29 +83,89 @@ public class DbContentProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unkown uri: " + uri);
         }
+        db.close();
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;
     }
 
     @Nullable
     @Override
-    public String getType(@NonNull Uri uri) {
-        return null;
+    public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        long rowId;
+        Uri returnUri;
+        switch (uriMatcher.match(uri)) {
+            case PRODUCT:
+                rowId = db.insert("products", null, values);
+                if (rowId > 0) {
+                    returnUri = ContentUris.withAppendedId(PRODUCTS_CONTENT_URI, rowId);
+                } else {
+                    throw new UnsupportedOperationException("Unable to insert rows into: " + uri);
+                }
+                break;
+            case PRODUCER:
+                rowId = db.insert("producers", null, values);
+                if (rowId > 0) {
+                    returnUri = ContentUris.withAppendedId(PRODUCERS_CONTENT_URI, rowId);
+                } else {
+                    throw new UnsupportedOperationException("Unable to insert rows into: " + uri);
+                }
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+        db.close();
+        // Use this on the URI passed into the function to notify any observers that the uri has changed
+        getContext().getContentResolver().notifyChange(uri, null);
+        return returnUri;
     }
 
-    @Nullable
-    @Override
-    public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        return null;
-    }
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int rows;
+        switch (uriMatcher.match(uri)) {
+            case PRODUCT:
+                rows = db.delete("products", selection, selectionArgs);
+                break;
+            case PRODUCER:
+                rows = db.delete("producers", selection, selectionArgs);
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+        //Because null could delete all rows
+        if (selection == null || rows != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        return rows;
     }
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int rows;
+        switch (uriMatcher.match(uri)) {
+            case PRODUCT:
+                rows = db.update("products", values, selection, selectionArgs);
+                break;
+            case PRODUCER:
+                rows = db.update("producers", values, selection, selectionArgs);
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+
+        }
+        if (rows != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        return rows;
+    }
+
+    @Nullable
+    @Override
+    public String getType(@NonNull Uri uri) {
+        return null;
     }
 }

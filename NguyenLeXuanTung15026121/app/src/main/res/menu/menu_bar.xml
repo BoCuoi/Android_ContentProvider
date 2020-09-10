@@ -10,4 +10,10 @@
     <item
         android:id="@+id/mnCV"
         android:title="Product View" />
+    <item
+        android:id="@+id/mnProducer"
+        android:title="Producer View" />
+    <item
+        android:id="@+id/mnIntent"
+        android:title="Intent View" />
 </menu>

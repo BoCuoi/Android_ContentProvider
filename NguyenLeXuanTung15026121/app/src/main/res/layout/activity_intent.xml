@@ -5,11 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".IntentActivity">
 
     <Button
-        android:id="@+id/btnMainExit"
+        android:id="@+id/btnItentShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exit" />
+        android:text="SHOW" />
+
+    <ListView
+        android:id="@+id/lvProducer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
