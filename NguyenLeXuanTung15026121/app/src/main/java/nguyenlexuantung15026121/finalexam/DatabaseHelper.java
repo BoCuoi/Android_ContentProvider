@@ -33,8 +33,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /// android.database.sqlite.SQLiteException: foreign key mismatch || MAKE ID IS PRIMARY KEY
     private static final String CREATE_TABLE_PRODUCER = "CREATE TABLE IF NOT EXISTS producers(producer_id INTEGER PRIMARY KEY, producer_name TEXT)";
 
-    private static final String CREATE_DEFAULT_PRODUCER_1 = "INSERT INTO producers(producer_id,producer_name) VALUES( 1 , 'Food');";
-    private static final String CREATE_DEFAULT_PRODUCER_2 = "INSERT INTO producers(producer_id,producer_name) VALUES( 2 , 'Toy');";
+    private static final String CREATE_DEFAULT_PRODUCER_1 = "INSERT INTO producers(producer_id,producer_name) VALUES( 1 , 'Food')";
+    private static final String CREATE_DEFAULT_PRODUCER_2 = "INSERT INTO producers(producer_id,producer_name) VALUES( 2 , 'Toy')";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -115,16 +115,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor != null) {
             cursor.moveToFirst(); // android.database.CursorIndexOutOfBoundsException
-            product = new Product(cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getInt(3),
-                    cursor.getInt(4)
-            );
+            while (!cursor.isAfterLast()) {
+                product = new Product(cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4)
+                );
+                cursor.moveToNext();
+            }
             cursor.close();
         }
+        db.close();
         return product;
     }
+
 
     public List<Producer> getAllProducer() {
         List<Producer> producerList = new ArrayList<>();

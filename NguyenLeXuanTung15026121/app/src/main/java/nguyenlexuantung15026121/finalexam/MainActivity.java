@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         // Load the defined menu resource
         menuInflater.inflate(R.menu.menu_bar, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override

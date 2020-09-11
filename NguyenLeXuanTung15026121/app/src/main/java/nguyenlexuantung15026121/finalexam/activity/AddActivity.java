@@ -37,7 +37,7 @@ public class AddActivity extends AppCompatActivity {
     ArrayAdapter<Product> lvAdapter;
 
     int positionPicked;
-    String sizeProduct;
+
 
     private static final int RB1_ID = 1000; //first radio button id
     private static final int RB2_ID = 1001; //second radio button id
@@ -55,10 +55,10 @@ public class AddActivity extends AppCompatActivity {
 
         radioGroup = (RadioGroup) findViewById(R.id.radGroupProduct);
         radSmall = (RadioButton) findViewById(R.id.radSmallProduct);
-        radSmall.setId(RB1_ID);
+//        radSmall.setId(RB1_ID);
         radSmall.setChecked(true);
         radBig = (RadioButton) findViewById(R.id.radBigProduct);
-        radBig.setId(RB2_ID); // using private variable ?!
+//        radBig.setId(RB2_ID); // using private variable ?!
 
         btnExitAdd = (Button) findViewById(R.id.btnExitAdd);
         btnAdd = (Button) findViewById(R.id.btnAdd);
@@ -89,10 +89,12 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int radCheckedId = radioGroup.getCheckedRadioButtonId();
-                if (radCheckedId == RB1_ID)
+                String sizeProduct;
+                if (radioGroup.getCheckedRadioButtonId() == R.id.radSmall)
                     sizeProduct = "50 kg";
-                else sizeProduct = "100 kg";
+                else
+                    sizeProduct = "100 kg";
+
 //                Within the loop, sizeProduct is just a local variable
 //                switch (radCheckedId) {
 //                    case RB1_ID:
@@ -110,7 +112,9 @@ public class AddActivity extends AppCompatActivity {
                         Integer.parseInt(edtAmount.getText().toString()),
                         producerPicked.getProducer_id()
                 );
+
                 productList.add(product);
+                lvAdapter = new ArrayAdapter<>(AddActivity.this, android.R.layout.simple_list_item_1, productList);
 //                lvAdapter.notifyDataSetChanged();
                 lvProduct.setAdapter(lvAdapter);
 
@@ -120,7 +124,7 @@ public class AddActivity extends AppCompatActivity {
         lvProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                positionPicked = position;
+                positionPicked = position;
                 Product currentItem = (Product) parent.getItemAtPosition(position);
                 edtID.setText(currentItem.getProductID() + "");
                 edtName.setText(currentItem.getProductName());

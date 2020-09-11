@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,8 @@ public class SearchActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
     List<Product> productList;
+    ArrayAdapter<Product> gridAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
                         productList.clear();
                         Product product = databaseHelper.getProductById(Integer.parseInt(edtSearch.getText().toString()));
                         productList.add(product);
-                        ArrayAdapter<Product> gridAdapter = new ArrayAdapter<>(SearchActivity.this, android.R.layout.simple_list_item_1, productList);
+                        gridAdapter = new ArrayAdapter<>(SearchActivity.this, android.R.layout.simple_list_item_1, productList);
                         gridView.setAdapter(gridAdapter);
 
                     } catch (Exception e) {
@@ -54,9 +57,15 @@ public class SearchActivity extends AppCompatActivity {
                 } else {
                     productList.clear();
                     productList = databaseHelper.getAllProduct();
-                    ArrayAdapter<Product> gridAdapter = new ArrayAdapter<Product>(SearchActivity.this, android.R.layout.simple_list_item_1, productList);
+                    gridAdapter = new ArrayAdapter<>(SearchActivity.this, android.R.layout.simple_list_item_1, productList);
                     gridView.setAdapter(gridAdapter);
                 }
+            }
+        });
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             }
         });
     }

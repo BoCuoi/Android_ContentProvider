@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class ProductActivity extends AppCompatActivity {
     EditText edtID, edtName, edtAmount;
     Button btnClose, btnSave, btnShow, btnUpdate, btnDelete;
     Spinner spinnerProduct;
+    RadioGroup radioGroup;
     RadioButton radioButtonSmall, radioButtonBig;
     ListView listViewProduct;
     DatabaseHelper databaseHelper;
@@ -57,7 +59,7 @@ public class ProductActivity extends AppCompatActivity {
         edtAmount = (EditText) findViewById(R.id.edtAmount);
         spinnerProduct = (Spinner) findViewById(R.id.spinnerProducer);
 
-
+        radioGroup = (RadioGroup) findViewById(R.id.radGroup);
         radioButtonSmall = (RadioButton) findViewById(R.id.radSmall);
         radioButtonSmall.setChecked(true);
         radioButtonBig = (RadioButton) findViewById(R.id.radBig);
@@ -112,9 +114,14 @@ public class ProductActivity extends AppCompatActivity {
                 Product currentItem = (Product) parent.getItemAtPosition(position);
                 edtID.setText(currentItem.getProductID() + "");
                 edtName.setText(currentItem.getProductName());
-                if (currentItem.getProductSize() == "50 kg") {
+                /// contains() to trigger change checked status successfully rather than ==
+                if (currentItem.getProductSize().contains("50 kg")) {
                     radioButtonSmall.setChecked(true);
-                } else radioButtonBig.setChecked(true);
+//                    radioButtonBig.setChecked(false);
+                } else {
+                    radioButtonBig.setChecked(true);
+//                    radioButtonSmall.setChecked(false);
+                }
 
                 /// java.lang.IndexOutOfBoundsException: Index: 2, Size: 2 | getProducerID() not getProductID()
                 spinnerProduct.setSelection(currentItem.getProducerID() - 1);
@@ -134,12 +141,19 @@ public class ProductActivity extends AppCompatActivity {
     public void saveProduct() {
         Producer producerPicked = producerList.get(spinnerProduct.getSelectedItemPosition());
         String tempValue;
-        if (radioButtonSmall.isChecked()) {
+        if (radioGroup.getCheckedRadioButtonId() == R.id.radSmall){
             tempValue = "50 kg";
-        } else
-            tempValue = "100 kg";
-        Product postProduct = new Product(Integer.parseInt(edtID.getText().toString()), edtName.getText().toString(), tempValue,
-                Integer.parseInt(edtAmount.getText().toString()), producerPicked.getProducer_id());
+        }
+        else tempValue ="100 kg";
+//        if (radioButtonSmall.isChecked()) {
+//            tempValue = "50 kg";
+//        } else
+//            tempValue = "100 kg";
+        Product postProduct = new Product(Integer.parseInt(edtID.getText().toString()),
+                edtName.getText().toString(),
+                tempValue,
+                Integer.parseInt(edtAmount.getText().toString()),
+                producerPicked.getProducer_id());
         databaseHelper.addProduct(postProduct);
     }
 
