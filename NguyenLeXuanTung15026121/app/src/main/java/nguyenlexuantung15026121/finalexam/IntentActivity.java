@@ -37,6 +37,7 @@ public class IntentActivity extends AppCompatActivity {
         Producer producer2 = new Producer(2, "B");
         tempArr.add(producer1);
         tempArr.add(producer2);
+        tempArr.add(new Producer(producer_id,producer_name));
 
         ///java.lang.NullPointerException: Attempt to invoke virtual method 'boolean java.lang.String.contains(java.lang.CharSequence)' on a null object reference
         ///Error set imageview compare contains charater on null field

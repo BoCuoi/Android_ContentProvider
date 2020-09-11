@@ -38,7 +38,7 @@ public class ProducerActivity extends AppCompatActivity {
                 Intent postProducerIntent = new Intent(ProducerActivity.this, IntentActivity.class);
                 postProducerIntent.putExtra("producer_id", Integer.parseInt(edtID.getText().toString()));
                 postProducerIntent.putExtra("producer_name", edtName.getText().toString());
-                startActivity(postProducerIntent);
+                startActivityForResult(postProducerIntent,9999);
             }
         });
     }

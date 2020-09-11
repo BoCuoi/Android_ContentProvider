@@ -63,21 +63,26 @@ public class DbContentProvider extends ContentProvider {
         switch (uriMatcher.match(uri)) {
             case PRODUCT:
                 cursor = db.query("products", projection, selection, selectionArgs, null, null, sortOrder);
+                cursor = db.rawQuery("SELECT * FROM products", null);
                 break;
             case PRODUCT_ID:
                 _id = ContentUris.parseId(uri);
-                cursor = db.query("products", projection, "product_id=?", new String[]{String.valueOf(_id)},
-                        null, null,
-                        sortOrder);
+//                cursor = db.query("products", projection, "product_id=?", new String[]{String.valueOf(_id)},
+//                        null, null,
+//                        sortOrder);
+                cursor = db.rawQuery("SELECT * FROM products WHERE product_id=?", new String[]{String.valueOf(_id)});
                 break;
             case PRODUCER:
-                cursor = db.query("producers", projection, selection, selectionArgs, null, null, sortOrder);
+//                cursor = db.query("producers", projection, selection, selectionArgs, null, null, sortOrder);
+                cursor = db.rawQuery("SELECT * FROM producers", null);
                 break;
             case PRODUCER_ID:
                 _id = ContentUris.parseId(uri);
-                cursor = db.query("producers", projection, "producer_id=?", new String[]{String.valueOf(_id)},
-                        null, null,
-                        sortOrder);
+//                cursor = db.query("producers", projection, "producer_id=?", new String[]{String.valueOf(_id)},
+//                        null, null,
+//                        sortOrder);
+
+                cursor = db.rawQuery("SELECT * FROM producers WHERE author_id=?", new String[]{String.valueOf(_id)});
                 break;
             default:
                 throw new UnsupportedOperationException("Unkown uri: " + uri);
