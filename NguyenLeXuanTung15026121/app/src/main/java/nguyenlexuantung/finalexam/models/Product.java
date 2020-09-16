@@ -1,4 +1,4 @@
-package nguyenlexuantung15026121.finalexam.models;
+package nguyenlexuantung.finalexam.models;
 
 public class Product {
     private int productID;

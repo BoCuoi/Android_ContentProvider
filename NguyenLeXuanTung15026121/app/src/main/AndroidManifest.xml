@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="nguyenlexuantung15026121.finalexam">
+    package="nguyenlexuantung.finalexam">
 
     <permission
-        android:name="nguyenlexuantung15026121.finalexam.WRITE_DATABASE"
+        android:name="nguyenlexuantung.finalexam.WRITE_DATABASE"
         android:label="Write Database"
         android:protectionLevel="normal" />
     <permission
-        android:name="nguyenlexuantung15026121.finalexam.READ_DATABASE"
+        android:name="nguyenlexuantung.finalexam.READ_DATABASE"
         android:label="Read Database"
         android:protectionLevel="normal" />
     <application
@@ -17,19 +17,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IntentActivity"></activity>
-        <activity android:name=".activity.ProducerActivity" />
-        <activity android:name=".activity.ProductActivity" />
-        <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.AddActivity" />
+        <activity android:name="nguyenlexuantung.finalexam.IntentActivity"></activity>
+        <activity android:name="nguyenlexuantung.finalexam.activity.ProducerActivity" />
+        <activity android:name="nguyenlexuantung.finalexam.activity.ProductActivity" />
+        <activity android:name="nguyenlexuantung.finalexam.activity.SearchActivity" />
+        <activity android:name="nguyenlexuantung.finalexam.activity.AddActivity" />
 
         <provider
-            android:name=".DbContentProvider"
-            android:authorities="nguyenlexuantung15026121.finalexam"
+            android:name="nguyenlexuantung.finalexam.DbContentProvider"
+            android:authorities="nguyenlexuantung.finalexam"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name="nguyenlexuantung.finalexam.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

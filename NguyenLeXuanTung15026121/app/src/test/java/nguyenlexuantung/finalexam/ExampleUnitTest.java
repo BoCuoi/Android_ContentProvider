@@ -1,4 +1,4 @@
-package nguyenlexuantung15026121.finalexam;
+package nguyenlexuantung.finalexam;
 
 import org.junit.Test;
 

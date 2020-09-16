@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinnerProducer;
     ListView listView;
     ArrayList<Producer> producerArrayList;
+
     final String PROVIDER_NAME = "nguyenlexuantung15026121.finalexam";
     final String PRODUCTS_URL = "content://" + PROVIDER_NAME + "/products";
     final Uri PRODUCTS_CONTENT_URI = Uri.parse(PRODUCTS_URL);
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         btnInsert = (Button) findViewById(R.id.btnAdd);
         btnUpdate = (Button) findViewById(R.id.btnUpdate);
         btnDelete = (Button) findViewById(R.id.btnDelete);
+
         producerArrayList = new ArrayList<>();
         loadProducer();
         listView = (ListView) findViewById(R.id.lvProduct);
@@ -134,9 +136,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void productCV() {
-        String PROVIDER_NAME = "nguyenlexuantung15026121.finalexam"; // authority argm
-        String PRODUCTS_URL = "content://" + PROVIDER_NAME + "/products";
-        Uri PRODUCTS_CONTENT_URI = Uri.parse(PRODUCTS_URL);
 
         List<Product> productList = new ArrayList<>();
         ContentResolver contentResolver = getContentResolver();

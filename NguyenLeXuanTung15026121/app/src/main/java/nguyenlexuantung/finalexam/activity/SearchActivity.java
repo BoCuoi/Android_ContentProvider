@@ -1,4 +1,4 @@
-package nguyenlexuantung15026121.finalexam.activity;
+package nguyenlexuantung.finalexam.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,9 +13,9 @@ import android.widget.GridView;
 import java.util.ArrayList;
 import java.util.List;
 
-import nguyenlexuantung15026121.finalexam.DatabaseHelper;
-import nguyenlexuantung15026121.finalexam.R;
-import nguyenlexuantung15026121.finalexam.models.Product;
+import nguyenlexuantung.finalexam.DatabaseHelper;
+import nguyenlexuantung.finalexam.R;
+import nguyenlexuantung.finalexam.models.Product;
 
 public class SearchActivity extends AppCompatActivity {
     EditText edtSearch;

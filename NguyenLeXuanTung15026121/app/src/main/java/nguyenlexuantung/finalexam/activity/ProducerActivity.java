@@ -1,4 +1,4 @@
-package nguyenlexuantung15026121.finalexam.activity;
+package nguyenlexuantung.finalexam.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import nguyenlexuantung15026121.finalexam.IntentActivity;
-import nguyenlexuantung15026121.finalexam.MainActivity;
-import nguyenlexuantung15026121.finalexam.R;
+import nguyenlexuantung.finalexam.IntentActivity;
+import nguyenlexuantung.finalexam.R;
 
 /// R package error if create Activity not in root package
 public class ProducerActivity extends AppCompatActivity {

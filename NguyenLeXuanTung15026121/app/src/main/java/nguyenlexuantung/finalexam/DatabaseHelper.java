@@ -1,4 +1,4 @@
-package nguyenlexuantung15026121.finalexam;
+package nguyenlexuantung.finalexam;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,8 +11,8 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import nguyenlexuantung15026121.finalexam.models.Producer;
-import nguyenlexuantung15026121.finalexam.models.Product;
+import nguyenlexuantung.finalexam.models.Producer;
+import nguyenlexuantung.finalexam.models.Product;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

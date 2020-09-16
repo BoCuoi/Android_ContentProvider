@@ -1,14 +1,9 @@
-package nguyenlexuantung15026121.finalexam.activity;
+package nguyenlexuantung.finalexam.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,15 +12,14 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nguyenlexuantung15026121.finalexam.DatabaseHelper;
-import nguyenlexuantung15026121.finalexam.R;
-import nguyenlexuantung15026121.finalexam.models.Producer;
-import nguyenlexuantung15026121.finalexam.models.Product;
+import nguyenlexuantung.finalexam.DatabaseHelper;
+import nguyenlexuantung.finalexam.R;
+import nguyenlexuantung.finalexam.models.Producer;
+import nguyenlexuantung.finalexam.models.Product;
 
 public class ProductActivity extends AppCompatActivity {
     EditText edtID, edtName, edtAmount;

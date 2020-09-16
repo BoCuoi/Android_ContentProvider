@@ -1,25 +1,24 @@
-package nguyenlexuantung15026121.finalexam;
+package nguyenlexuantung.finalexam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import nguyenlexuantung15026121.finalexam.adapter.ProducerCollectionAdapter;
-import nguyenlexuantung15026121.finalexam.models.Producer;
+import nguyenlexuantung.finalexam.activity.ProducerActivity;
+import nguyenlexuantung.finalexam.adapter.ProducerCollectionAdapter;
+import nguyenlexuantung.finalexam.models.Producer;
 
 public class IntentActivity extends AppCompatActivity {
     ListView listView;
-    Button btnIntentShow;
+    Button btnIntentShow, btnIntentBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class IntentActivity extends AppCompatActivity {
         Producer producer2 = new Producer(2, "B");
         tempArr.add(producer1);
         tempArr.add(producer2);
-        tempArr.add(new Producer(producer_id,producer_name));
+        tempArr.add(new Producer(producer_id, producer_name));
 
         ///java.lang.NullPointerException: Attempt to invoke virtual method 'boolean java.lang.String.contains(java.lang.CharSequence)' on a null object reference
         ///Error set imageview compare contains charater on null field
@@ -62,7 +61,13 @@ public class IntentActivity extends AppCompatActivity {
 
             }
         });
-
-
+        btnIntentBack = (Button) findViewById(R.id.btnItentBack);
+        btnIntentBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backIntent = new Intent(IntentActivity.this, ProducerActivity.class);
+                startActivity(backIntent);
+            }
+        });
     }
 }

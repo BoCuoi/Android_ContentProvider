@@ -11,8 +11,12 @@
         android:id="@+id/btnItentShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SHOW" />
-
+        android:text="DELETE" />
+    <Button
+        android:id="@+id/btnItentBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK" />
     <ListView
         android:id="@+id/lvProducer"
         android:layout_width="match_parent"

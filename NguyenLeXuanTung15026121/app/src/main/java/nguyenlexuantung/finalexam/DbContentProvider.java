@@ -1,4 +1,4 @@
-package nguyenlexuantung15026121.finalexam;
+package nguyenlexuantung.finalexam;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -10,8 +10,6 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import java.util.HashMap;
 
 public class DbContentProvider extends ContentProvider {
     static final String PROVIDER_NAME = "nguyenlexuantung15026121.finalexam"; // authority argm
@@ -103,6 +101,7 @@ public class DbContentProvider extends ContentProvider {
                 rowId = db.insert("products", null, values);
                 if (rowId > 0) {
                     returnUri = ContentUris.withAppendedId(PRODUCTS_CONTENT_URI, rowId);
+                    System.out.printf("THIS IS THE EXPORT INFO: " + returnUri + "");
                 } else {
                     throw new UnsupportedOperationException("Unable to insert rows into: " + uri);
                 }
